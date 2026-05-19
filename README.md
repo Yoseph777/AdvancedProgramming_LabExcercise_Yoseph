@@ -1,4 +1,4 @@
-Lab Exercises Portfolio: Software Requirement Engineering
+**Lab Exercises Portfolio: Advanced Programming**
 This repository contains a series of 4 comprehensive lab exercises designed to demonstrate core concepts in full-stack development, desktop GUI frameworks, state management, and real-time networking.
  Lab Exercises Overview
  Lab 1: Poker Game
