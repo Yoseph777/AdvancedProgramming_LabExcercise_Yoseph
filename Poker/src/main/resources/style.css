@@ -1,0 +1,52 @@
+.root {
+    -fx-font-family: "Arial";
+}
+
+.table-background {
+    -fx-background-color:
+        radial-gradient(radius 100%, #35654d, #163524);
+}
+
+.title-label {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: gold;
+}
+
+.label {
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+}
+
+.card {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-padding: 15 20 15 20;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: black;
+    -fx-border-width: 2;
+    -fx-min-width: 70;
+    -fx-alignment: center;
+}
+
+.game-button {
+    -fx-background-color: linear-gradient(#ffd54f, #ffb300);
+    -fx-text-fill: black;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20 10 20;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+}
+
+.game-button:hover {
+    -fx-background-color: linear-gradient(#ffe082, #ffc107);
+}
+
+.text-field {
+    -fx-font-size: 16px;
+    -fx-background-radius: 10;
+}
