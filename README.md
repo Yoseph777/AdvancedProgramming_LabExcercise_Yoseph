@@ -1,6 +1,6 @@
 # Lab Exercises Portfolio: Advanced Programming
 
-Welcome to my Advanced Programming portfolio. This repository contains a series of four comprehensive lab exercises designed to demonstrate core concepts in full-stack development, desktop GUI frameworks, robust state management, and real-time multi-threaded networking.
+Welcome to my Advanced Programming portfolio. This repository contains a series of four comprehensive lab exercises designed to demonstrate core concepts in Java based Fiel I/O, Database, Distributed Systems with RMI, JavaFX GUI, and real-time multi-threaded networking.
 
 ---
 
