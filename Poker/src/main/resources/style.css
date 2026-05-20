@@ -1,52 +1,196 @@
+/* ── Fonts ─────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=IBM+Plex+Mono:wght@400;600&display=swap');
+
+/* ── Root ──────────────────────────────────────────────────── */
 .root {
-    -fx-font-family: "Arial";
+    -fx-font-family: 'IBM Plex Mono', monospace;
+    -fx-background-color: #0d2b1a;
 }
 
+/* ── Table felt ────────────────────────────────────────────── */
 .table-background {
     -fx-background-color:
-        radial-gradient(radius 100%, #35654d, #163524);
+        radial-gradient(center 50% 45%, radius 75%, #1d6640, #0a2214);
 }
 
-.title-label {
-    -fx-font-size: 28px;
-    -fx-font-weight: bold;
-    -fx-text-fill: gold;
+/* ── Player panels ─────────────────────────────────────────── */
+.player-panel {
+    -fx-background-color: rgba(0,0,0,0.52);
+    -fx-background-radius: 14;
+    -fx-border-color: #3a7d5533;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 14;
+    -fx-effect: dropshadow(gaussian, rgba(0,180,70,0.12), 18, 0, 0, 5);
+}
+.player-name {
+    -fx-font-family: 'Cinzel', serif;
+    -fx-font-size: 14px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #e8d99a;
+}
+.chip-label {
+    -fx-font-family: 'IBM Plex Mono', monospace;
+    -fx-font-size: 19px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #f5c842;
 }
 
-.label {
-    -fx-text-fill: white;
-    -fx-font-size: 18px;
+.status-badge {
+    -fx-font-family: 'IBM Plex Mono', monospace;
+    -fx-font-size: 11px;
+    -fx-font-weight: 600;
+    -fx-min-height: 22;
+    -fx-padding: 2 10 2 10;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-border-width: 1;
+    -fx-text-fill: transparent;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+.status-check {
+    -fx-text-fill: #a8c5a0;
+    -fx-background-color: rgba(168,197,160,0.13);
+    -fx-border-color: #a8c5a0;
+}
+.status-call {
+    -fx-text-fill: #7ec8e3;
+    -fx-background-color: rgba(126,200,227,0.13);
+    -fx-border-color: #7ec8e3;
+}
+.status-bet {
+    -fx-text-fill: #f5c842;
+    -fx-background-color: rgba(245,200,66,0.13);
+    -fx-border-color: #f5c842;
+}
+.status-fold {
+    -fx-text-fill: #e05c5c;
+    -fx-background-color: rgba(224,92,92,0.12);
+    -fx-border-color: #e05c5c;
+}
+.status-allin {
+    -fx-text-fill: #ff9800;
+    -fx-background-color: rgba(255,152,0,0.15);
+    -fx-border-color: #ff9800;
+}
+.status-thinking {
+    -fx-text-fill: #888;
+    -fx-background-color: rgba(128,128,128,0.1);
+    -fx-border-color: #555;
+}
+
+.center-panel {
+    -fx-background-color: rgba(0,0,0,0.28);
+    -fx-background-radius: 120;
+    -fx-border-color: #2a6b4422;
+    -fx-border-width: 2;
+    -fx-border-radius: 120;
+}
+.section-title {
+    -fx-font-family: 'Cinzel', serif;
+    -fx-font-size: 10px;
+    -fx-text-fill: #4caf7d;
+    -fx-letter-spacing: 2;
+}
+.pot-label {
+    -fx-font-family: 'Cinzel', serif;
+    -fx-font-size: 24px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #f5c842;
+    -fx-effect: dropshadow(gaussian, rgba(245,200,66,0.45), 10, 0, 0, 0);
+}
+.status-label {
+    -fx-font-family: 'IBM Plex Mono', monospace;
+    -fx-font-size: 12px;
+    -fx-text-fill: #cde6d0;
+    -fx-text-alignment: center;
+    -fx-wrap-text: true;
+    -fx-max-width: 400;
 }
 
 .card {
-    -fx-background-color: white;
-    -fx-text-fill: black;
-    -fx-padding: 15 20 15 20;
-    -fx-font-size: 24px;
-    -fx-font-weight: bold;
-    -fx-background-radius: 10;
-    -fx-border-radius: 10;
-    -fx-border-color: black;
-    -fx-border-width: 2;
-    -fx-min-width: 70;
-    -fx-alignment: center;
+    -fx-font-size: 26px;
+    -fx-background-color: #fdf6e3;
+    -fx-background-radius: 8;
+    -fx-border-color: #bba96a;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 8;
+    -fx-padding: 5 9 5 9;
+    -fx-text-fill: #1a1a1a;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.55), 8, 0, 2, 3);
 }
+
+.controls-bar {
+    -fx-background-color: rgba(0,0,0,0.38);
+    -fx-background-radius: 14;
+    -fx-border-color: #2a6b4430;
+    -fx-border-width: 1;
+    -fx-border-radius: 14;
+}
+.separator { -fx-background-color: #2a6b4455; }
 
 .game-button {
-    -fx-background-color: linear-gradient(#ffd54f, #ffb300);
-    -fx-text-fill: black;
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
-    -fx-padding: 10 20 10 20;
-    -fx-background-radius: 10;
+    -fx-font-family: 'Times New Roman', monospace;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #0a200f;
+    -fx-background-color: linear-gradient(to bottom, #6fcf97, #27ae60);
+    -fx-background-radius: 8;
+    -fx-border-color: #1e8449;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-padding: 7 16 7 16;
     -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0, 1, 2);
 }
-
 .game-button:hover {
-    -fx-background-color: linear-gradient(#ffe082, #ffc107);
+    -fx-background-color: linear-gradient(to bottom, #82e0aa, #2ecc71);
+}
+.game-button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #27ae60, #1e8449);
+    -fx-effect: none;
+}
+.game-button:disabled {
+    -fx-opacity: 0.35;
+    -fx-cursor: default;
 }
 
-.text-field {
-    -fx-font-size: 16px;
-    -fx-background-radius: 10;
+/* Fold gets a red tint */
+#foldBtn, .game-button:last-child {
+    -fx-background-color: linear-gradient(to bottom, #e57373, #c0392b);
+    -fx-border-color: #922b21;
+    -fx-text-fill: #fff;
+}
+
+/* ── Bet field ─────────────────────────────────────────────── */
+.bet-field {
+    -fx-background-color: #0a1f10;
+    -fx-border-color: #4caf7d;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-text-fill: #f5c842;
+    -fx-prompt-text-fill: #3a7d5580;
+    -fx-font-family: 'IBM Plex Mono', monospace;
+    -fx-font-size: 14px;
+    -fx-padding: 5 10 5 10;
+}
+
+/* ── Log panel ─────────────────────────────────────────────── */
+.log-panel {
+    -fx-background-color: rgba(0,0,0,0.55);
+    -fx-border-color: #2a6b4433;
+    -fx-border-width: 1 0 0 0;
+}
+.log-area {
+    -fx-control-inner-background: #060e08;
+    -fx-background-color: #060e08;
+    -fx-border-color: #1a3d22;
+    -fx-border-width: 1;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-text-fill: #7ec87e;
+    -fx-font-family: 'IBM Plex Mono', monospace;
+    -fx-font-size: 11px;
+    -fx-highlight-fill: #27ae6055;
 }
