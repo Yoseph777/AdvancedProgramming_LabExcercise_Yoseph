@@ -8,6 +8,14 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.*;
 import java.util.*;
 import java.util.concurrent.*;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+import java.time.LocalDateTime;
 
 public class Server {
 
@@ -57,8 +65,7 @@ public class Server {
             }
         }
         @Override
-        public synchronized void addTeacher(int id, String name, String department)
-                throws RemoteException, SQLException {
+        public synchronized void addTeacher(int id, String name, String department) throws RemoteException, SQLException {
             try (Connection conn = Database.getConnection()) {
                 ensureSchema(conn);
                 PreparedStatement ps = conn.prepareStatement(
@@ -66,6 +73,37 @@ public class Server {
                                 "ON DUPLICATE KEY UPDATE name=VALUES(name), department=VALUES(department)");
                 ps.setInt(1, id); ps.setString(2, name); ps.setString(3, department);
                 ps.executeUpdate();
+            }
+            try {
+                Path textFile = Path.of("teachers_backup.txt");
+                String textLine = String.format("%s,%d,\"%s\",\"%s\"\n",
+                        LocalDateTime.now(), id, name, department);
+                Files.writeString(textFile, textLine, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+            } catch (IOException e) {
+                System.err.println("Warning: Teacher saved to DB, but Text backup failed: " + e.getMessage());
+            }
+            try {
+                TeacherData wrapper = new TeacherData(id, name, department);
+                String filename = String.format("teacher_%d.ser", id);
+                try (FileOutputStream fileOut = new FileOutputStream(filename);
+                     ObjectOutputStream objOut = new ObjectOutputStream(fileOut)) {
+                    objOut.writeObject(wrapper);
+                }
+            } catch (IOException e) {
+                System.err.println("Warning: Teacher saved to DB, but Serialized backup failed: " + e.getMessage());
+            }
+        }
+        static class TeacherData implements Serializable {
+            private static final long serialVersionUID = 1L;
+            public int id;
+            public String name;
+            public String department;
+            public LocalDateTime backupTime;
+            public TeacherData(int id, String name, String department) {
+                this.id = id;
+                this.name = name;
+                this.department = department;
+                this.backupTime = LocalDateTime.now();
             }
         }
         @Override
@@ -85,9 +123,7 @@ public class Server {
         }
 
         @Override
-        public synchronized void addStudent(int id, String name, String department,
-                                            char section, int year)
-                throws RemoteException, SQLException {
+        public synchronized void addStudent(int id, String name, String department, char section, int year) throws RemoteException, SQLException {
             try (Connection conn = Database.getConnection()) {
                 ensureSchema(conn);
                 PreparedStatement ps = conn.prepareStatement(
@@ -97,6 +133,42 @@ public class Server {
                 ps.setInt(1, id); ps.setString(2, name); ps.setString(3, department);
                 ps.setString(4, String.valueOf(section)); ps.setInt(5, year);
                 ps.executeUpdate();
+            }
+            try {
+                Path csvFile = Path.of("students_backup.txt");
+                String csvLine = String.format("%s,%d,\"%s\",\"%s\",%c,%d\n",
+                        LocalDateTime.now(), id, name, department, section, year);
+                Files.writeString(csvFile, csvLine, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+            } catch (IOException e) {
+                System.err.println("Warning: Student saved to DB, but Text backup failed: " + e.getMessage());
+            }
+            try {
+                StudentData wrapper = new StudentData(id, name, department, section, year);
+                String filename = String.format("student_%d.ser", id);
+                try (FileOutputStream fileOut = new FileOutputStream(filename);
+                     ObjectOutputStream objOut = new ObjectOutputStream(fileOut)) {
+
+                    objOut.writeObject(wrapper);
+                }
+            } catch (IOException e) {
+                System.err.println("Warning: Student saved to DB, but Serialized backup failed: " + e.getMessage());
+            }
+        }
+        static class StudentData implements Serializable {
+            private static final long serialVersionUID = 1L;
+            public int id;
+            public String name;
+            public String department;
+            public char section;
+            public int year;
+            public LocalDateTime backupTime;
+            public StudentData(int id, String name, String department, char section, int year) {
+                this.id = id;
+                this.name = name;
+                this.department = department;
+                this.section = section;
+                this.year = year;
+                this.backupTime = LocalDateTime.now();
             }
         }
 
