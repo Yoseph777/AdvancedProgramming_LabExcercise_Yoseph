@@ -32,11 +32,9 @@ public class Main extends Application {
         MenuItem newItem = new MenuItem("New");
         MenuItem open = new MenuItem("Open...");
         MenuItem save = new MenuItem("Save");
-        MenuItem saveAs = new MenuItem("Save As...");
-
         Menu fileMenu = new Menu("File");
         Menu editMenu = new Menu("Edit");
-        fileMenu.getItems().addAll(newItem, open, new SeparatorMenuItem(), save, saveAs);
+        fileMenu.getItems().addAll(newItem, open, new SeparatorMenuItem(), save);
         MenuBar menuBar = new MenuBar(fileMenu);
 
         newItem.setOnAction(e -> {
